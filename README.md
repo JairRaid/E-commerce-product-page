@@ -34,7 +34,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: https://github.com/JairRaid/E-commerce-product-page
-- Live Site URL: 
+- Live Site URL: https://jairraid.github.io/E-commerce-product-page/
 
 ## My process
 
