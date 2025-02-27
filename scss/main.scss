@@ -1,0 +1,1037 @@
+//Font face
+@font-face {
+    font-family: 'Kumbh Sans';
+    src: url('../assets/fonts/KumbhSans-VariableFont_YOPQ,wght.ttf')format('truetype');
+}
+
+//Colors
+$grey950: #1D2026;
+$grey500: #69707D;
+$grey300: #C3CAD9;
+$grey100: #E4E9F2;
+$grey50: #F6F8FD;
+$orange500: #FF7E1B;
+$orange300: #FFAB6A;
+
+//Typo
+@mixin typography($size, $color, $weight, $l-height, $l-spacing) {
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+    line-height: $l-height;
+    letter-spacing: $l-spacing;
+}
+
+//Reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    -moz-appearance: textfield;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+//Styling
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+
+img[alt="menu icon"],
+img[alt="close menu icon"],
+img[alt="trash icon"] {
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+.cart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .badge {
+        @include typography(.625rem, white, 700, auto, 0);
+        padding: 3px 6px 3px 6px;
+        background-color: $orange500;
+        border-radius: 999px;
+        position: absolute;
+        top: -5px;
+        left: calc(100% - 10px);
+    }
+}
+
+ins {
+    text-decoration: none;
+}
+
+button:active,
+button:hover {
+    background-color: $orange300 !important;
+}
+
+//MOBILE
+@media(max-width: 48rem) {
+    header {
+        position: relative;
+        margin: 19px 23.75px 24px 23.75px;
+
+        img[alt="menu icon"] {
+            margin-right: 16px;
+        }
+
+        h1 {
+            //            outline: solid 1px red;
+            height: 20px;
+            overflow: hidden;
+            margin-right: auto;
+        }
+
+        h1 img {
+            position: relative;
+            top: -12px;
+        }
+
+        img[alt="user image"] {
+            width: 24px;
+            margin-left: 24px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 24px 0;
+            position: fixed;
+            z-index: 6;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            padding: 24px;
+            background-color: white;
+            transition: left 0.3s ease;
+
+            img {
+                width: 13.44px;
+                margin-bottom: 32px;
+            }
+
+            a {
+                @include typography(1.125rem, $grey950, 700, 26px, 0);
+            }
+        }
+
+        .hide-nav {
+            left: -250px;
+        }
+    }
+
+    //Basket card
+    .basket-card {
+        position: absolute;
+        z-index: 4;
+        top: calc(100% + 34px);
+        left: -11.875px;
+        width: calc(100% + 23.75px);
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 20px 50px 0 rgba(29, 32, 38, 0.1);
+
+
+        h3 {
+            @include typography(1rem, $grey950, 700, 26px, 0);
+            margin: 24px 12px 23px 12px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: $grey50;
+        }
+
+        .cart-list {
+            padding: 25px 25.5px 24px 25.5px;
+        }
+
+        button {
+            width: calc(100% - 48px);
+            margin: 0 24px 25px 24px;
+        }
+    }
+
+    .cart-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px 0;
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 0 16px;
+            height: 52px;
+        }
+
+        img[alt="product thumbnail"] {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        p {
+            @include typography(1rem, $grey500, 400, 26px, 0);
+            margin-right: auto;
+        }
+
+        strong {
+            color: $grey950;
+        }
+    }
+
+    //Main
+    .product-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    //Carousel Buttons
+    .carousel-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px 0 16px;
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        img {
+            width: 10px;
+        }
+    }
+
+    //slide container
+    .product-slide {
+        width: 100%;
+        display: flex;
+
+        img {
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+        }
+    }
+
+    .thumbnail-container {
+        display: none;
+    }
+
+    //Article
+    article {
+        margin: 24px 24px 0 24px;
+        padding-bottom: 70px;
+
+        span.caption {
+            @include typography(.75rem, $grey500, 700, auto, 1.85px);
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            @include typography(1.75rem, $grey950, 700, 32px, 0);
+            margin-bottom: 16px;
+        }
+
+        p {
+            @include typography(.937rem, $grey500, 400, 26px, 0);
+            margin-bottom: 32px;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 0 16px;
+        }
+    }
+
+    .price {
+        margin-bottom: 32px;
+
+        ins {
+            @include typography(1.75rem, $grey950, 700, 32px, 0);
+        }
+
+        span {
+            @include typography(1rem, white, 700, 26px, 0);
+            display: inline-block;
+            margin-right: auto;
+            background-color: $grey950;
+            width: 51px;
+            height: 27px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+        }
+
+        del {
+            @include typography(1rem, $grey500, 700, 26px, 0);
+        }
+    }
+
+    //Input number
+    .input-button {
+        display: flex;
+        flex-direction: column;
+        gap: 16px 0;
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        padding: 15px 18.5px 15px 18.5px;
+        background-color: $grey50;
+        border-radius: 10px;
+
+        input {
+            font-family: 'Kumbh Sans', sans-serif;
+            @include typography(1rem, $grey950, 700, 26px, 0);
+            width: 100%;
+            border: none;
+            text-align: center;
+            background-color: $grey50;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    button {
+        font-family: 'Kumbh Sans', sans-serif;
+        @include typography(1rem, $grey950, 700, 26px, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 16px;
+        border: none;
+        height: 56px;
+        background-color: $orange500;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button img {
+        filter: brightness(0) saturate(100%) invert(11%) sepia(2%) saturate(3189%) hue-rotate(175deg) brightness(100%) contrast(95%);
+    }
+
+    //Overlay
+    .overlay {
+        position: fixed;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+//TABLET
+@media(min-width: 48.063rem) and (max-width: 64rem) {
+    header {
+        position: relative;
+        margin: 28px 80px 0 80px;
+        padding-bottom: 32px;
+
+        img[alt="menu icon"] {
+            margin-right: 16px;
+        }
+
+        h1 {
+            //            outline: solid 1px red;
+            height: 20px;
+            overflow: hidden;
+            margin-right: auto;
+        }
+
+        h1 img {
+            position: relative;
+            top: -13px;
+        }
+
+        img[alt="user image"] {
+            width: 50px;
+            margin-left: 48px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 24px 0;
+            position: fixed;
+            z-index: 6;
+            top: 0;
+            left: 0;
+            width: 301px;
+            height: 100%;
+            padding: 48px 0 0 80px;
+            background-color: white;
+            transition: left 0.3s ease;
+
+            img {
+                width: 13.44px;
+                margin-bottom: 32px;
+            }
+
+            a {
+                @include typography(1.125rem, $grey950, 700, 26px, 0);
+            }
+        }
+
+        .hide-nav {
+            left: -301px;
+        }
+
+        &::after {
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: $grey100;
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+    }
+
+    //Basket card
+    .basket-card {
+        position: absolute;
+        z-index: 4;
+        top: calc(100% - 16px);
+        left: calc(100% - 300px);
+        min-width: 370px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 20px 50px 0 rgba(29, 32, 38, 0.1);
+
+        h3 {
+            @include typography(1rem, $grey950, 700, 26px, 0);
+            margin: 24px 12px 23px 12px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: $grey50;
+        }
+
+        .cart-list {
+            padding: 25px 25.5px 24px 25.5px;
+        }
+
+        button {
+            width: calc(100% - 48px);
+            margin: 0 24px 25px 24px;
+        }
+    }
+
+    .cart-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px 0;
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 0 16px;
+            height: 52px;
+        }
+
+        img[alt="product thumbnail"] {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        p {
+            @include typography(1rem, $grey500, 400, 26px, 0);
+            margin-right: auto;
+        }
+
+        strong {
+            color: $grey950;
+        }
+    }
+
+    //Main
+    main {
+        margin: 48px 80px 0 80px;
+    }
+
+    .product-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        height: 290px;
+    }
+
+    //Carousel Buttons
+    .carousel-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px 0 16px;
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        img {
+            width: 10px;
+        }
+    }
+
+    //slide container
+    .product-slide {
+        width: 100%;
+        display: flex;
+
+        img {
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+        }
+    }
+
+    .thumbnail-container {
+        display: none;
+    }
+
+    .product-slide img:nth-child(1) {
+        object-position: 0 -200px;
+    }
+
+    .product-slide img:nth-child(4) {
+        object-position: 0 -70px;
+    }
+
+    //Article
+    article {
+        margin: 48px 0 0 0;
+        padding-bottom: 70px;
+
+        span.caption {
+            @include typography(.812rem, $grey500, 700, auto, 1.85px);
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            @include typography(2.75rem, $grey950, 700, 48px, 0);
+            margin-bottom: 24px;
+        }
+
+        p {
+            @include typography(1rem, $grey500, 400, 26px, 0);
+            margin-bottom: 24px;
+        }
+    }
+
+    .price {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        margin-bottom: 24px;
+
+        ins {
+            @include typography(1.75rem, $grey950, 700, 32px, 0);
+        }
+
+        span {
+            @include typography(1rem, white, 700, 26px, 0);
+            display: inline-block;
+            background-color: $grey950;
+            width: 51px;
+            height: 27px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+        }
+
+        del {
+            @include typography(1rem, $grey500, 700, 26px, 0);
+            width: 100%;
+        }
+    }
+
+    //Input number
+    .input-button {
+        display: flex;
+        gap: 0 8px;
+
+        .input-container,
+        button {
+            flex-basis: 50%;
+        }
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        padding: 15px 18.5px 15px 18.5px;
+        background-color: $grey50;
+        border-radius: 10px;
+
+        input {
+            font-family: 'Kumbh Sans', sans-serif;
+            @include typography(1rem, $grey950, 700, 26px, 0);
+            width: 100%;
+            border: none;
+            text-align: center;
+            background-color: $grey50;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    button {
+        font-family: 'Kumbh Sans', sans-serif;
+        @include typography(1rem, $grey950, 700, 26px, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 16px;
+        border: none;
+        height: 56px;
+        background-color: $orange500;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button img {
+        filter: brightness(0) saturate(100%) invert(11%) sepia(2%) saturate(3189%) hue-rotate(175deg) brightness(100%) contrast(95%);
+    }
+
+    //Overlay
+    .overlay {
+        position: fixed;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+//DESKTOP
+@media(min-width: 64.063rem) {
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        //        outline: solid 1px red;
+        display: flex;
+        position: relative;
+        padding: 28px 80px 0 80px;
+        padding-bottom: 32px;
+        max-width: 1270px;
+        width: 100%;
+
+        img[alt="menu icon"],
+        img[alt="close menu icon"] {
+            display: none;
+        }
+
+        h1 {
+            //            outline: solid 1px red;
+            height: 20px;
+            overflow: hidden;
+            margin-right: 56px;
+        }
+
+        h1 img {
+            position: relative;
+            top: -13px;
+        }
+
+        img[alt="user image"] {
+            width: 48px;
+            margin-left: 48px;
+            border: solid 2px $orange500;
+            border-radius: 999px;
+        }
+
+        nav {
+            display: flex;
+            gap: 0 32px;
+            background-color: white;
+            margin-right: auto;
+
+            img {
+                width: 13.44px;
+                margin-bottom: 32px;
+            }
+
+            a {
+                @include typography(.937rem, $grey500, 400, 26px, 0);
+
+                &:hover {
+                    color: $grey950;
+                }
+            }
+        }
+
+        &::after {
+            content: '';
+            width: calc(100% - 160px);
+            height: 1px;
+            background-color: $grey100;
+            position: absolute;
+            top: 100%;
+            left: 80px;
+        }
+    }
+
+    nav a {
+        position: relative;
+    }
+
+    nav a:hover::after,
+    nav a:active::after {
+        content: '';
+        position: absolute;
+        top: calc(100% + 40px);
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: $orange500;
+    }
+
+    //Basket card
+    .basket-card {
+        position: absolute;
+        z-index: 4;
+        top: calc(100% - 16px);
+        left: calc(100% - 380px);
+        min-width: 370px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 20px 50px 0 rgba(29, 32, 38, 0.1);
+
+        h3 {
+            @include typography(1rem, $grey950, 700, 26px, 0);
+            margin: 24px 12px 23px 12px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: $grey50;
+        }
+
+        .cart-list {
+            padding: 25px 25.5px 24px 25.5px;
+        }
+
+        button {
+            width: calc(100% - 48px);
+            margin: 0 24px 25px 24px;
+        }
+    }
+
+    .cart-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px 0;
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 0 16px;
+            height: 52px;
+        }
+
+        img[alt="product thumbnail"] {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        p {
+            @include typography(1rem, $grey500, 400, 26px, 0);
+            margin-right: auto;
+        }
+
+        strong {
+            color: $grey950;
+        }
+    }
+
+    //Main
+    main {
+        margin: 96px 72.5px 0 72.5px;
+        padding-bottom: 128px;
+        max-width: 1021px;
+
+        section {
+            display: grid;
+            grid-template: auto / repeat(2, 1fr);
+            gap: 0 128px;
+        }
+    }
+
+    .carousel-buttons {
+        display: none;
+    }
+
+    .product-container {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        max-width: 448px;
+    }
+
+    .product-slide {
+        display: flex;
+        border-radius: 15px;
+        margin-bottom: 32px;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+    }
+
+    .thumbnail-container {
+        display: flex;
+        justify-content: space-between;
+        height: 88px;
+        gap: 0 0;
+
+        img {
+            height: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+
+    //Article
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        span.caption {
+            @include typography(.812rem, $grey500, 700, auto, 1.85px);
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            @include typography(2.75rem, $grey950, 700, 48px, 0);
+            margin-bottom: 32px;
+        }
+
+        p {
+            @include typography(1rem, $grey500, 400, 26px, 0);
+            margin-bottom: 32px;
+        }
+    }
+
+    .price {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        margin-bottom: 32px;
+
+        ins {
+            @include typography(1.75rem, $grey950, 700, 32px, 0);
+        }
+
+        span {
+            @include typography(1rem, white, 700, 26px, 0);
+            display: inline-block;
+            background-color: $grey950;
+            width: 51px;
+            height: 27px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+        }
+
+        del {
+            @include typography(1rem, $grey500, 700, 26px, 0);
+            width: 100%;
+        }
+    }
+
+    //Input number
+    .input-button {
+        display: flex;
+        gap: 0 8px;
+
+        .input-container,
+        button {
+            flex-basis: 50%;
+        }
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        padding: 15px 18.5px 15px 18.5px;
+        background-color: $grey50;
+        border-radius: 10px;
+
+        input {
+            font-family: 'Kumbh Sans', sans-serif;
+            @include typography(1rem, $grey950, 700, 26px, 0);
+            width: 100%;
+            border: none;
+            text-align: center;
+            background-color: $grey50;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    button {
+        font-family: 'Kumbh Sans', sans-serif;
+        @include typography(1rem, $grey950, 700, 26px, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 16px;
+        border: none;
+        height: 56px;
+        background-color: $orange500;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button img {
+        filter: brightness(0) saturate(100%) invert(11%) sepia(2%) saturate(3189%) hue-rotate(175deg) brightness(100%) contrast(95%);
+    }
+}
+
+.empty {
+    @include typography(1rem, $grey500, 700, 26px, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 133px;
+    padding-bottom: 24px;
+}
+
+.light-box {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 7;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    img[alt="close menu icon"] {
+        position: relative;
+        top: 0;
+        left: 218px;
+        margin-bottom: 24px;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(154deg) brightness(106%) contrast(102%);
+        cursor: pointer;
+    }
+
+    .product-slide {
+        cursor: inherit;
+    }
+
+    .thumbnail-container {
+        display: flex;
+        justify-content: center;
+        justify-content: space-evenly;
+        gap: 0 0;
+        width: 100%;
+        height: 88px;
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.thumbnail-selected {
+    position: relative;
+    display: block;
+    border: solid 2px $orange500;
+    outline: 42px solid rgba(255, 255, 255, 0.5);
+    outline-offset: -50px;
+}
