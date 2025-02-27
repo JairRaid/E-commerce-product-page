@@ -53,4 +53,6 @@ I learned to create a carousel.
 
 ## Author
 
+- email: rakotonirainyriija@gmail.com
+- facebook: https://web.facebook.com/jair.rakoto.3/
 
