@@ -3,7 +3,7 @@ let index = 0;
 //Carousel controller
 document.addEventListener("DOMContentLoaded", () => {
     const slide = document.querySelector(".product-slide");
-    const images = document.querySelectorAll(".product-slide img");
+    const images = document.querySelectorAll("section .product-slide img");
     const prevBtn = document.querySelector(".previous");
     const nextBtn = document.querySelector(".next");
 
